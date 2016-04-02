@@ -6,6 +6,8 @@ using Template10.Controls;
 using Template10.Common;
 using System;
 using System.Linq;
+using Windows.Networking.Sockets;
+using Windows.Storage.Streams;
 
 namespace Build2016Hackathon.Client.UWP
 {
@@ -14,6 +16,8 @@ namespace Build2016Hackathon.Client.UWP
 
     sealed partial class App : Template10.Common.BootStrapper
     {
+        //MessageWebSocket mws = new MessageWebSocket();
+
         public App()
         {
             InitializeComponent();
@@ -21,7 +25,7 @@ namespace Build2016Hackathon.Client.UWP
 
             #region App settings
 
-            var _settings = SettingsService.Instance;
+            var _settings = GameService.Instance;
             RequestedTheme = _settings.AppTheme;
             CacheMaxDuration = _settings.CacheMaxDuration;
             ShowShellBackButton = _settings.UseShellBackButton;
@@ -31,6 +35,8 @@ namespace Build2016Hackathon.Client.UWP
 
         public override async Task OnInitializeAsync(IActivatedEventArgs args)
         {
+            //await mws.ConnectAsync(new Uri("ws://localhost:1337"));
+
             if (Window.Current.Content as ModalDialog == null)
             {
                 // create a new frame 

@@ -15,7 +15,7 @@ namespace Build2016Hackathon.Client.UWP.ViewModels
 
     public class SettingsPartViewModel : ViewModelBase
     {
-        Services.SettingsServices.SettingsService _settings;
+        Services.SettingsServices.GameService _settings;
 
         public SettingsPartViewModel()
         {
@@ -25,7 +25,7 @@ namespace Build2016Hackathon.Client.UWP.ViewModels
             }
             else
             {
-                _settings = Services.SettingsServices.SettingsService.Instance;
+                _settings = Services.SettingsServices.GameService.Instance;
             }
         }
 

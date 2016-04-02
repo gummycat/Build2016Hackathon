@@ -9,9 +9,9 @@ using Windows.UI.Xaml.Controls;
 
 namespace Build2016Hackathon.Client.UWP.ViewModels
 {
-    public class MainPageViewModel : ViewModelBase
+    public class CardVotingViewModel : ViewModelBase
     {
-        public MainPageViewModel()
+        public CardVotingViewModel()
         {
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
@@ -59,8 +59,7 @@ namespace Build2016Hackathon.Client.UWP.ViewModels
             {
                 args.Cancel = false;
 
-                // enable the Card Creation, Card Voting and Game primary menu items
-                
+                // enable the the Card Creation, Card Voting and Game primary menu items
             }
             
             await Task.CompletedTask;

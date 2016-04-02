@@ -1,0 +1,13 @@
+{
+  "name": "Build2016Hackathon.GameServer",
+  "version": "0.0.0",
+  "description": "Build2016Hackathon.GameServer",
+  "main": "server.js",
+  "author": {
+    "name": "IOI952",
+    "email": ""
+  },
+  "dependencies": {
+    "socket.io": "^1.4.5"
+  }
+}

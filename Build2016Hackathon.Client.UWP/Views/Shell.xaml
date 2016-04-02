@@ -23,6 +23,33 @@
                                Text="Home" />
                 </StackPanel>
             </Controls:HamburgerButtonInfo>
+            <!--  card creation button  -->
+            <Controls:HamburgerButtonInfo x:Name="cardCreationPageButton" ClearHistory="True" PageType="views:CardCreationPage" Visibility="Collapsed">
+                <StackPanel Orientation="Horizontal">
+                    <SymbolIcon Width="48" Height="48"
+                                Symbol="Document" />
+                    <TextBlock Margin="12,0,0,0" VerticalAlignment="Center"
+                               Text="Card Creation" />
+                </StackPanel>
+            </Controls:HamburgerButtonInfo>
+            <!--  card voting button  -->
+            <Controls:HamburgerButtonInfo x:Name="cardVotingPageButton" ClearHistory="True" PageType="views:CardVotingPage" Visibility="Collapsed">
+                <StackPanel Orientation="Horizontal">
+                    <SymbolIcon Width="48" Height="48"
+                                Symbol="Dislike" />
+                    <TextBlock Margin="12,0,0,0" VerticalAlignment="Center"
+                               Text="Card Voting" />
+                </StackPanel>
+            </Controls:HamburgerButtonInfo>
+            <!--  game play button  -->
+            <Controls:HamburgerButtonInfo x:Name="gamePlayPageButton" ClearHistory="True" PageType="views:GamePlayPage" Visibility="Collapsed">
+                <StackPanel Orientation="Horizontal">
+                    <SymbolIcon Width="48" Height="48"
+                                Symbol="Play" />
+                    <TextBlock Margin="12,0,0,0" VerticalAlignment="Center"
+                               Text="Game Play" />
+                </StackPanel>
+            </Controls:HamburgerButtonInfo>
         </Controls:HamburgerMenu.PrimaryButtons>
 
         <Controls:HamburgerMenu.SecondaryButtons>
