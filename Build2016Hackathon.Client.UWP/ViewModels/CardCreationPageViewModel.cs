@@ -15,27 +15,24 @@ namespace Build2016Hackathon.Client.UWP.ViewModels
         {
         }
 
-        string _PlayerName = "";
-        public string PlayerName { get { return _PlayerName; } set { Set(ref _PlayerName, value); } }
+        string _CardText = "";
+        public string CardText { get { return _CardText; } set { Set(ref _CardText, value); } }
 
-        string _JoinStatusMessage = "";
-        public string JoinStatusMessage { get { return _JoinStatusMessage; } set { Set(ref _JoinStatusMessage, value); } }
+        UInt64 _CardRatingId = 0;
+        public UInt64 CardRatingId { get { return _CardRatingId; } set { Set(ref _CardRatingId, value); } }
+
+        UInt64 _NumberOfAnswers = 0;
+        public UInt64 NumberOfAnswers { get { return _NumberOfAnswers; } set { Set(ref _NumberOfAnswers, value); } }
 
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
-            if (suspensionState.Any())
-            {
-                PlayerName = suspensionState[nameof(PlayerName)]?.ToString();
-            }
+            var stuff = await App.gameService.GetRatings();
+
             await Task.CompletedTask;
         }
 
         public override async Task OnNavigatedFromAsync(IDictionary<string, object> suspensionState, bool suspending)
         {
-            if (suspending)
-            {
-                suspensionState[nameof(PlayerName)] = PlayerName;
-            }
             await Task.CompletedTask;
         }
 
@@ -46,7 +43,7 @@ namespace Build2016Hackathon.Client.UWP.ViewModels
         }
 
         public void GotoDetailsPage() =>
-            NavigationService.Navigate(typeof(Views.DetailPage), PlayerName);
+            NavigationService.Navigate(typeof(Views.DetailPage), CardText);
 
         public void GotoSettings() =>
             NavigationService.Navigate(typeof(Views.SettingsPage), 0);

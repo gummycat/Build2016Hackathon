@@ -5,6 +5,8 @@ using Template10.Common;
 using Template10.Utils;
 using Windows.UI.Xaml;
 using Build2016Hackathon.Client.UWP.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Build2016Hackathon.Client.UWP.Services.GameServices
 {
@@ -42,6 +44,11 @@ namespace Build2016Hackathon.Client.UWP.Services.GameServices
             Player newPlayer = new Player() { Handle = name };
             await App.client.GetTable<Player>().InsertAsync(newPlayer);
             CurrentPlayer = newPlayer;
+        }
+
+        public async Task<IEnumerable<Rating>> GetRatings()
+        {
+            return await App.client.GetTable<Rating>().ToListAsync();
         }
     }
 }
