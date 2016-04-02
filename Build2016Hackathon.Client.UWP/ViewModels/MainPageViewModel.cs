@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Template10.Services.NavigationService;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Controls;
+using Build2016Hackathon.Client.UWP.Models;
+using Windows.UI.Xaml;
 
 namespace Build2016Hackathon.Client.UWP.ViewModels
 {
@@ -45,24 +47,7 @@ namespace Build2016Hackathon.Client.UWP.ViewModels
 
         public override async Task OnNavigatingFromAsync(NavigatingEventArgs args)
         {
-
-            // TODO: connect to server
-
-            // TODO: join with username
-
-            // if join fails, then cancel
-            if (!PlayerName.Equals("Pete"))
-            {
-                args.Cancel = true;
-            }
-            else
-            {
-                args.Cancel = false;
-
-                // enable the Card Creation, Card Voting and Game primary menu items
-                
-            }
-            
+            args.Cancel = false;
             await Task.CompletedTask;
         }
 

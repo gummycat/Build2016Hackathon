@@ -14,5 +14,6 @@ namespace Build2016Hackathon.Client.UWP.Views
             InitializeComponent();
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
         }
+
     }
 }

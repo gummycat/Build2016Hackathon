@@ -14,27 +14,21 @@ namespace Build2016Hackathon.Client.UWP.ViewModels
     {
         public DetailPageViewModel()
         {
-            if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
-            {
-                Value = "Designtime value";
-            }
         }
 
-        private string _Value = "Default";
-        public string Value { get { return _Value; } set { Set(ref _Value, value); } }
+        private string _PlayerName = "Default";
+        public string PlayerName { get { return _PlayerName; } set { Set(ref _PlayerName, value); } }
 
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
-            Value = (suspensionState.ContainsKey(nameof(Value))) ? suspensionState[nameof(Value)]?.ToString() : parameter?.ToString();
+            PlayerName = (suspensionState.ContainsKey(nameof(PlayerName))) ? suspensionState[nameof(PlayerName)]?.ToString() : parameter?.ToString();
+            App.gameService.SetPlayer(PlayerName);
+
             await Task.CompletedTask;
         }
 
         public override async Task OnNavigatedFromAsync(IDictionary<string, object> suspensionState, bool suspending)
         {
-            if (suspending)
-            {
-                suspensionState[nameof(Value)] = Value;
-            }
             await Task.CompletedTask;
         }
 

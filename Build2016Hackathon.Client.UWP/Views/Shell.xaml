@@ -5,7 +5,6 @@
       xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
       xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="using:Build2016Hackathon.Client.UWP.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:views="using:Build2016Hackathon.Client.UWP.Views"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
@@ -23,8 +22,12 @@
                                Text="Home" />
                 </StackPanel>
             </Controls:HamburgerButtonInfo>
+            
             <!--  card creation button  -->
-            <Controls:HamburgerButtonInfo x:Name="cardCreationPageButton" ClearHistory="True" PageType="views:CardCreationPage" Visibility="Collapsed">
+            <Controls:HamburgerButtonInfo 
+                                          ClearHistory="True" 
+                                          PageType="views:CardCreationPage" 
+                                          Visibility="Visible">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Width="48" Height="48"
                                 Symbol="Document" />
@@ -32,8 +35,12 @@
                                Text="Card Creation" />
                 </StackPanel>
             </Controls:HamburgerButtonInfo>
+            
             <!--  card voting button  -->
-            <Controls:HamburgerButtonInfo x:Name="cardVotingPageButton" ClearHistory="True" PageType="views:CardVotingPage" Visibility="Collapsed">
+            <Controls:HamburgerButtonInfo 
+                                          ClearHistory="True" 
+                                          PageType="views:CardVotingPage"
+                                          Visibility="Visible">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Width="48" Height="48"
                                 Symbol="Dislike" />
@@ -41,8 +48,12 @@
                                Text="Card Voting" />
                 </StackPanel>
             </Controls:HamburgerButtonInfo>
+            
             <!--  game play button  -->
-            <Controls:HamburgerButtonInfo x:Name="gamePlayPageButton" ClearHistory="True" PageType="views:GamePlayPage" Visibility="Collapsed">
+            <Controls:HamburgerButtonInfo  
+                                          ClearHistory="True" 
+                                          PageType="views:GamePlayPage" 
+                                          Visibility="Visible">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Width="48" Height="48"
                                 Symbol="Play" />

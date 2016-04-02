@@ -1,0 +1,13 @@
+{
+  "name": "GE",
+  "version": "0.0.0",
+  "description": "GE",
+  "main": "server.js",
+  "author": {
+    "name": "IOI952",
+    "email": ""
+  },
+  "dependencies": {
+    "socket.io": "^1.4.5"
+  }
+}

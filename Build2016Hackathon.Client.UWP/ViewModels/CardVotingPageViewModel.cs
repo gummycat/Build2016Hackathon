@@ -45,24 +45,7 @@ namespace Build2016Hackathon.Client.UWP.ViewModels
 
         public override async Task OnNavigatingFromAsync(NavigatingEventArgs args)
         {
-
-            // TODO: connect to server
-
-            // TODO: join with username
-
-            // if join fails, then cancel
-            if (!PlayerName.Equals("Pete"))
-            {
-                args.Cancel = true;
-            }
-            else
-            {
-                args.Cancel = false;
-
-                // enable the the Card Creation, Card Voting and Game primary menu items
-
-            }
-            
+            args.Cancel = false;
             await Task.CompletedTask;
         }
 

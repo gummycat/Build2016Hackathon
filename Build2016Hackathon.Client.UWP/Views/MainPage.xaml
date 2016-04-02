@@ -71,7 +71,7 @@
                           RelativePanel.Below="welcomeText">
             <TextBox MinWidth="150" MinHeight="62"
                      Header="Player"
-                     Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Text="{Binding PlayerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      TextWrapping="Wrap">
                 <Interactivity:Interaction.Behaviors>
                     <!--  enable submit on enter key  -->

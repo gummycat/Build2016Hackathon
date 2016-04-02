@@ -61,41 +61,36 @@
 
         </controls:PageHeader>
 
-        <TextBlock x:Name="welcomeText" Text="Welcome to Cardvana! Enter your player name below and join the game!" 
+        <TextBlock x:Name="welcomeText" Text="Create A Card" 
                    Margin="16,16,32,0"
                    RelativePanel.AlignLeftWithPanel="True"
                    RelativePanel.Below="pageHeader"/>
 
-        <controls:Resizer x:Name="parameterResizer" Margin="16,16,16,0"
-                          RelativePanel.AlignLeftWithPanel="True"
-                          RelativePanel.Below="welcomeText">
-            <TextBox MinWidth="150" MinHeight="62"
-                     Header="Player"
+        <TextBox Margin="16,16,16,0"
+                     RelativePanel.AlignLeftWithPanel="True"
+                     RelativePanel.Below="welcomeText"
+                     Width="150" MinHeight="62"
+                     Header="Card Text (use '_' as placeholders for the answers)"
                      Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     TextWrapping="Wrap">
-                <Interactivity:Interaction.Behaviors>
-                    <!--  enable submit on enter key  -->
-                    <Behaviors:KeyBehavior Key="Enter">
-                        <Core:CallMethodAction MethodName="GotoDetailsPage" TargetObject="{Binding}" />
-                    </Behaviors:KeyBehavior>
-                    <!--  focus on textbox when page loads  -->
-                    <Core:EventTriggerBehavior>
-                        <Behaviors:FocusAction />
-                    </Core:EventTriggerBehavior>
-                </Interactivity:Interaction.Behaviors>
-            </TextBox>
+                     TextWrapping="Wrap" />
 
-        </controls:Resizer>
+        <ComboBox x:Name="numberBlanks" 
+                  Header="Number of Answers"
+                  Margin="16,16,32,0"
+                  RelativePanel.AlignLeftWithPanel="True"
+                  RelativePanel.Below="welcomeText" SelectedIndex="0"
+                  >
+            <ComboBoxItem IsSelected="True" Content="0"/>
+            <ComboBoxItem Content="1"/>
+            <ComboBoxItem Content="2"/>
+        </ComboBox>
 
-        <Button x:Name="joinButton"
-                Click="{x:Bind ViewModel.GotoDetailsPage}" Content="Join"
-                RelativePanel.AlignBottomWith="parameterResizer"
-                RelativePanel.RightOf="parameterResizer" />
-
-        <TextBlock x:Name="stateTextBox" Margin="16,16,0,0"
-                   RelativePanel.AlignLeftWith="parameterResizer"
-                   RelativePanel.Below="parameterResizer"
-                   Text="Current Visual State" />
+        <ComboBox x:Name="ratingValue" 
+                  Header="Rating"
+                  Margin="16,16,32,0"
+                  RelativePanel.AlignLeftWithPanel="True"
+                  RelativePanel.Below="numberBlanks"
+                  />
 
     </RelativePanel>
 </Page>

@@ -5,17 +5,17 @@ using Windows.UI.Xaml;
 
 namespace Build2016Hackathon.Client.UWP.Services.SettingsServices
 {
-    public class GameService
+    public class SettingsService
     {
-        public static GameService Instance { get; }
-        static GameService()
+        public static SettingsService Instance { get; }
+        static SettingsService()
         {
             // implement singleton pattern
-            Instance = Instance ?? new GameService();
+            Instance = Instance ?? new SettingsService();
         }
 
         Template10.Services.SettingsService.ISettingsHelper _helper;
-        private GameService()
+        private SettingsService()
         {
             _helper = new Template10.Services.SettingsService.SettingsHelper();
         }

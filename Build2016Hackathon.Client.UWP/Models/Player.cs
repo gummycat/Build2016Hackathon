@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Build2016Hackathon.Client.UWP.Models
 {
-    class Player
+    public class Player
     {
-        int Id { get; set; }
-        String Name { get; set; }
+        public UInt64 Id { get; set; }
+        public String Handle { get; set; }
+        public bool Admin { get; set; }
     }
 }

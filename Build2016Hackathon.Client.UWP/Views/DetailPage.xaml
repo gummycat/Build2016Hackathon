@@ -8,7 +8,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:Build2016Hackathon.Client.UWP.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:vm="using:Build2016Hackathon.Client.UWP.ViewModels" x:Name="ThisPage"
+      xmlns:vm="using:Build2016Hackathon.Client.UWP.ViewModels" 
+      x:Name="ThisPage"
       mc:Ignorable="d">
 
     <Page.DataContext>
@@ -59,8 +60,8 @@
                       RelativePanel.Below="pageHeader"
                       VerticalScrollBarVisibility="Auto">
             <StackPanel>
-                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="You passed:" />
-                <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text="{x:Bind ViewModel.Value, Mode=OneWay, FallbackValue=DesigntimeValue}" />
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Hello!  Welcome to Cardvana!  Your player name is:" />
+                <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text="{x:Bind ViewModel.PlayerName, Mode=OneWay, FallbackValue=DesigntimeValue}" />
             </StackPanel>
         </ScrollViewer>
 

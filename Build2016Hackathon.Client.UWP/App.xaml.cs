@@ -8,6 +8,8 @@ using System;
 using System.Linq;
 using Windows.Networking.Sockets;
 using Windows.Storage.Streams;
+using Microsoft.WindowsAzure.MobileServices;
+using Build2016Hackathon.Client.UWP.Services.GameServices;
 
 namespace Build2016Hackathon.Client.UWP
 {
@@ -17,15 +19,19 @@ namespace Build2016Hackathon.Client.UWP
     sealed partial class App : Template10.Common.BootStrapper
     {
         //MessageWebSocket mws = new MessageWebSocket();
+        public static MobileServiceClient client;
+        public static GameService gameService;
 
         public App()
         {
             InitializeComponent();
             SplashFactory = (e) => new Views.Splash(e);
+            client = new MobileServiceClient("https://cardvana.azure-mobile.net", "jVRmaPXnyLFZnvofbYUkyjRuUDloXI51");
+            gameService = GameService.Instance;
 
             #region App settings
 
-            var _settings = GameService.Instance;
+            var _settings = SettingsService.Instance;
             RequestedTheme = _settings.AppTheme;
             CacheMaxDuration = _settings.CacheMaxDuration;
             ShowShellBackButton = _settings.UseShellBackButton;
@@ -35,8 +41,6 @@ namespace Build2016Hackathon.Client.UWP
 
         public override async Task OnInitializeAsync(IActivatedEventArgs args)
         {
-            //await mws.ConnectAsync(new Uri("ws://localhost:1337"));
-
             if (Window.Current.Content as ModalDialog == null)
             {
                 // create a new frame 
