@@ -8,7 +8,8 @@ namespace Build2016Hackathon.Client.UWP.Models
 {
     public class Rating
     {
-        public UInt64 RatingId;
-        public string Description;
+        public UInt64 Id { get; set; }
+        public string Description { get; set; }
+        public uint Sort { get; set; }
     }
 }

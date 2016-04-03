@@ -6,40 +6,45 @@ using System.Threading.Tasks;
 using Template10.Services.NavigationService;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Controls;
+using Build2016Hackathon.Client.UWP.Models;
+using System.Collections.ObjectModel;
+using Build2016Hackathon.Client.UWP.Services.GameServices;
 
 namespace Build2016Hackathon.Client.UWP.ViewModels
 {
     public class CardVotingPageViewModel : ViewModelBase
     {
+
         public CardVotingPageViewModel()
         {
-            if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
+        }
+
+        public ReadOnlyObservableCollection<Card> CardList
+        {
+            get
             {
-                PlayerName = "Pete";
+                return GameService.Instance.Cards;
+                
             }
         }
 
-        string _PlayerName = "";
-        public string PlayerName { get { return _PlayerName; } set { Set(ref _PlayerName, value); } }
-
-        string _JoinStatusMessage = "";
-        public string JoinStatusMessage { get { return _JoinStatusMessage; } set { Set(ref _JoinStatusMessage, value); } }
+        public ReadOnlyObservableCollection<Rating> RatingsList
+        {
+            get
+            {
+                return GameService.Instance.Ratings;
+            }
+        }
+        
 
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
-            if (suspensionState.Any())
-            {
-                PlayerName = suspensionState[nameof(PlayerName)]?.ToString();
-            }
             await Task.CompletedTask;
         }
 
         public override async Task OnNavigatedFromAsync(IDictionary<string, object> suspensionState, bool suspending)
         {
-            if (suspending)
-            {
-                suspensionState[nameof(PlayerName)] = PlayerName;
-            }
+            
             await Task.CompletedTask;
         }
 
@@ -50,7 +55,7 @@ namespace Build2016Hackathon.Client.UWP.ViewModels
         }
 
         public void GotoDetailsPage() =>
-            NavigationService.Navigate(typeof(Views.DetailPage), PlayerName);
+            NavigationService.Navigate(typeof(Views.DetailPage), 0);
 
         public void GotoSettings() =>
             NavigationService.Navigate(typeof(Views.SettingsPage), 0);
@@ -60,7 +65,6 @@ namespace Build2016Hackathon.Client.UWP.ViewModels
 
         public void GotoAbout() =>
             NavigationService.Navigate(typeof(Views.SettingsPage), 2);
-
     }
 }
 

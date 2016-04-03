@@ -8,7 +8,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:Build2016Hackathon.Client.UWP.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:vm="using:Build2016Hackathon.Client.UWP.ViewModels" mc:Ignorable="d">
+      xmlns:vm="using:Build2016Hackathon.Client.UWP.ViewModels" 
+      xmlns:m="using:Build2016Hackathon.Client.UWP.Models"
+      mc:Ignorable="d">
 
     <Page.DataContext>
         <vm:CardVotingPageViewModel x:Name="ViewModel" />
@@ -61,41 +63,140 @@
 
         </controls:PageHeader>
 
-        <TextBlock x:Name="welcomeText" Text="Welcome to Cardvana! Enter your player name below and join the game!" 
-                   Margin="16,16,32,0"
+        <TextBlock x:Name="pageTitle" Text="Rate Cards" 
                    RelativePanel.AlignLeftWithPanel="True"
-                   RelativePanel.Below="pageHeader"/>
+                   Margin="16,16,16,16"
+                   RelativePanel.Below="pageHeader"
+            />
+        
+        <Grid
+            Margin="16"
+            RelativePanel.AlignLeftWithPanel="True"
+            RelativePanel.AlignRightWithPanel="True"
+            RelativePanel.AlignBottomWithPanel="True"
+            RelativePanel.Below="pageTitle"
+            x:Name="contentPane"
+            >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <!-- Top Half page | Card List -->
+            <Grid
+                x:Name="cardGrid"
+                Grid.Row="0"
+                >
+                <Grid.RowDefinitions>
+                   <RowDefinition Height="1*"/>
+                    <RowDefinition Height="9*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="9*"/>
+                </Grid.ColumnDefinitions>
+                <Border
+                    x:Name="TypeHeader"
+                    Grid.Row="0"
+                    Grid.Column="0">
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        TextAlignment="Center"
+                        Text="Type"
+                    />
+                </Border>
+                <Border
+                    Grid.Row="0"
+                    Grid.Column="1">
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        x:Name="TextHeader"
+                        Text="Card Text" 
+                    />
+                </Border>
+                <ListView x:Name="cardList" 
+                          Grid.Row="1"
+                          Grid.ColumnSpan="2"
+                          ItemsSource="{x:Bind ViewModel.CardList}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="m:Card">
+                            <StackPanel
+                                Orientation="Horizontal"
+                                >
 
-        <controls:Resizer x:Name="parameterResizer" Margin="16,16,16,0"
-                          RelativePanel.AlignLeftWithPanel="True"
-                          RelativePanel.Below="welcomeText">
-            <TextBox MinWidth="150" MinHeight="62"
-                     Header="Player"
-                     Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     TextWrapping="Wrap">
-                <Interactivity:Interaction.Behaviors>
-                    <!--  enable submit on enter key  -->
-                    <Behaviors:KeyBehavior Key="Enter">
-                        <Core:CallMethodAction MethodName="GotoDetailsPage" TargetObject="{Binding}" />
-                    </Behaviors:KeyBehavior>
-                    <!--  focus on textbox when page loads  -->
-                    <Core:EventTriggerBehavior>
-                        <Behaviors:FocusAction />
-                    </Core:EventTriggerBehavior>
-                </Interactivity:Interaction.Behaviors>
-            </TextBox>
+                                <Border>
+                                <TextBlock
+                                    TextAlignment="Center"
+                                    Margin="-16,0,0,0"
+                                    Width="{Binding Path=ActualWidth, ElementName=TypeHeader}"
+                                    Text="{x:Bind CardType}" 
+                                    />
+                                </Border>
+                                <Border>
+                                <TextBlock
+                                    Text="{x:Bind Text}" 
+                                    />
+                                </Border>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+            <!-- Bottom half of page | Voting UI -->
+            <StackPanel
+                x:Name="contentBottom"
+                Grid.Row="1"
+                Orientation="Horizontal"
+                DataContext="{Binding Path=SelectedItem, ElementName=cardList}">
 
-        </controls:Resizer>
+                <StackPanel.Resources>
+                   <Style TargetType="TextBlock">
+                        <Setter Property="Margin" Value="0,16,16,0"/>
+                    </Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Margin" Value="0,16,0,0"/>
+                    </Style>
+                </StackPanel.Resources>
 
-        <Button x:Name="joinButton"
-                Click="{x:Bind ViewModel.GotoDetailsPage}" Content="Join"
-                RelativePanel.AlignBottomWith="parameterResizer"
-                RelativePanel.RightOf="parameterResizer" />
+                <StackPanel
+                    Orientation="Vertical">
+                    <TextBlock
+                        Text="Card Type: "
+                        />
+                    <TextBlock
+                        Text="Card Text: "
+                        />
+                    <TextBlock
+                        Text="Rating: "
+                        />
+                    <Button>
+                        Submit
+                    </Button>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock
+                        Text="{Binding CardType}" 
+                        />
+                    <TextBlock
+                        Text="{Binding Text}" 
+                        />
+                    <ComboBox
+                        ItemsSource="{x:Bind ViewModel.RatingsList}"
+                        >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate x:DataType="m:Rating">
+                                <Border>
+                                <TextBlock
+                                    Text ="{x:Bind Description}"
+                                    
+                                    />
+                                </Border>
 
-        <TextBlock x:Name="stateTextBox" Margin="16,16,0,0"
-                   RelativePanel.AlignLeftWith="parameterResizer"
-                   RelativePanel.Below="parameterResizer"
-                   Text="Current Visual State" />
-
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+                
+            </StackPanel>
+        </Grid>
     </RelativePanel>
 </Page>
